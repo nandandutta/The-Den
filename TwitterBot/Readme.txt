@@ -1,4 +1,3 @@
-Thanks for your purchase!
 This readme will list everything you need to do to get it up and working!
 The first thing you will need is a twitter account.
 Once you have that, make sure you link it to a phone number.

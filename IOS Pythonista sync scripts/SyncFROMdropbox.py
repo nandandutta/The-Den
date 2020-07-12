@@ -16,11 +16,6 @@
 # 6. (optional) Open the "wrench" (actions) menu in Pythonista and add
 #    this script, so you can run it from everywhere in Pythonista.
 
-# Notes:
-# All selected files are downloaded into the root folder of the Pythonista
-# script library. If a file with the same name already exists, a numeric
-# suffix is appended automatically.
-
 TOKEN = 'YOUR_TOKEN_HERE'
 
 import requests
