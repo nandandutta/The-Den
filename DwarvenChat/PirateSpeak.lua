@@ -57,26 +57,26 @@ function PirateSpeak_OnLoad()
 
 	-- Create our slash commands
 	SlashCmdList["PIRATESPEAKTOGGLE"] = pirate_toggle;
-	SLASH_PIRATESPEAKTOGGLE1 = "/piratespeak";
-	SLASH_PIRATESPEAKTOGGLE2 = "/pspeak";
+	SLASH_PIRATESPEAKTOGGLE1 = "/dwarfspeak";
+	SLASH_PIRATESPEAKTOGGLE2 = "/dpeak";
 	SlashCmdList["PSAY"] = pirate_say;
-	SLASH_PSAY1 = "/ps";
-	SLASH_PSAY2 = "/psay";
-	SlashCmdList["PYELL"] = pirate_yell;
-	SLASH_PYELL1 = "/py";
-	SLASH_PYELL2 = "/pyell";
-	SlashCmdList["PPARTY"] = pirate_party;
-	SLASH_PPARTY1 = "/pp";
-	SLASH_PPARTY2 = "/pparty";
-	SlashCmdList["PGUILD"] = pirate_guild;
-	SLASH_PGUILD1 = "/pg";
-	SLASH_PGUILD2 = "/pguild";
-	SlashCmdList["PSTRICTTOGGLE"] = pirate_strict;
-	SLASH_PSTRICTTOGGLE1 = "/pstrict";
+	SLASH_PSAY1 = "/ds";
+	SLASH_PSAY2 = "/dsay";
+	SlashCmdList["DYELL"] = pirate_yell;
+	SLASH_PYELL1 = "/dy";
+	SLASH_PYELL2 = "/dyell";
+	SlashCmdList["DPARTY"] = pirate_party;
+	SLASH_PPARTY1 = "/dp";
+	SLASH_PPARTY2 = "/dparty";
+	SlashCmdList["DGUILD"] = pirate_guild;
+	SLASH_PGUILD1 = "/dg";
+	SLASH_PGUILD2 = "/dguild";
+	SlashCmdList["DSTRICTTOGGLE"] = pirate_strict;
+	SLASH_PSTRICTTOGGLE1 = "/dstrict";
 
 	-- announce addon load
 	if( DEFAULT_CHAT_FRAME ) then
-		DEFAULT_CHAT_FRAME:AddMessage("PirateSpeak loaded. Yaar, talk like a pirate!");
+		DEFAULT_CHAT_FRAME:AddMessage("Dwarven Accent loaded!");
 	end
 end
 
@@ -84,7 +84,7 @@ end
 -- Blizzard function to be hooked
 local PirateSpeak_SendChatMessage = SendChatMessage;
 
--- Wintertime and Pirate Speak conflict.
+-- Wintertime and Dwarf Accent conflict.
 -- If we detect Wintertime we'll note the channel and stay off of it
 local wtID, wtName = GetChannelName("WinterTimeGlobal")
 
@@ -146,30 +146,30 @@ function inject_pirate(inputString)
 	return inputString
 end
 
-function piratespeak(x)
-	x = sub_pirate(x)
-	if (math.random(100) > 75 ) then
-		x = append_pirate(x)
-	else
-		if(math.random(100) > 50 and pirate_strict_on == 0) then
-			x = x .. " Arrr!"
-		end
-	end
-	if ( math.random(100) > 75 ) then
-		x = prepend_pirate(x)
-	end
-	return x;
-end
+-- function piratespeak(x)
+-- 	x = sub_pirate(x)
+-- 	if (math.random(100) > 75 ) then
+-- 		x = append_pirate(x)
+-- 	else
+-- 		if(math.random(100) > 50 and pirate_strict_on == 0) then
+-- 			x = x .. " Bwaha!"
+-- 		end
+-- 	end
+-- 	if ( math.random(100) > 75 ) then
+-- 		x = prepend_pirate(x)
+-- 	end
+-- 	return x;
+-- end
 
 function pirate_toggle(toggle)
 	if ( toggle == "on" ) then
 		pirate_talk_on = 1
 		psBroker.text = "|c0000FF00ON|r"
-		DEFAULT_CHAT_FRAME:AddMessage("Pirate talk is on. Arr!")
+		DEFAULT_CHAT_FRAME:AddMessage("Dwarf Accent On")
 	elseif ( toggle == "off" ) then
 		pirate_talk_on = 0
 		psBroker.text = "|c00FF0000OFF|r"
-		DEFAULT_CHAT_FRAME:AddMessage("Pirate talk is off.  Arr. :(")
+		DEFAULT_CHAT_FRAME:AddMessage("Dwarf Accent off")
 	else	
 		DEFAULT_CHAT_FRAME:AddMessage(pirate_helptext(helptext))
 	end
@@ -273,35 +273,47 @@ end
 -- Create default speak tables
 
 function CreateSpeakDB()
-	local pirateSpeak_PrependDB = {
-	"Aye, ",
-	}
-	local pirateSpeak_AppendDB = {
-	", ye scurvy dog",
-	", matey",
-	", or I not be a pirate.  Arrr",
-	", by the briny deep",
-	", arrrr",
-	", landlubber",
-	", arrr",
-	", arr",
-	", yarrr",
-	", yarr",
-	", thar she blows",
-	", scurvy scum",
-	", swabby",
-	", ye old dog",
-	", ye dog",
-	", salty dog"
-	}
+	-- local pirateSpeak_PrependDB = {
+	-- "Aye, ",
+	-- }
+	-- local pirateSpeak_AppendDB = {
+	-- ", ye scurvy dog",
+	-- ", matey",
+	-- ", or I not be a pirate.  Arrr",
+	-- ", by the briny deep",
+	-- ", arrrr",
+	-- ", landlubber",
+	-- ", arrr",
+	-- ", arr",
+	-- ", yarrr",
+	-- ", yarr",
+	-- ", thar she blows",
+	-- ", scurvy scum",
+	-- ", swabby",
+	-- ", ye old dog",
+	-- ", ye dog",
+	-- ", salty dog"
+	-- }
 	local pirateSpeak_ReplaceDB = {
-	{o={"hello","hiya","^hi there"}, r={"ahoy","avast","ahoy thar"}},
+	{o={"^hello","^hiya","^hi there", "^hey"}, r={"Well met","E'llo","ahoy thar"}},
 	{o={"no", "nah"}, r={"nae"}},
 	{o={"^no", "^nah"}, r={"^nae"}},
 	{o={"the"}, r={"tha"}},
 	{o={"^the"}, r={"^tha"}},
 	{o={"you"}, r={"ye"}},
-	{o={"don't", "Don't"}, r={"dinna"}}
+	{o={"don't", "Don't"}, r={"dinna"}},
+	{o={"my"}, r={"me"}},
+	{o={"^my"}, r={"^me"}},
+	{o={"are"}, r={"be"}},
+	{o={"^are"}, r={"^be"}},
+	{o={"you"}, r={"ye"}},
+	{o={"the"}, r={"tha"}},
+	{o={"^the"}, r={"^tha"}},
+	{o={"and"}, r={"^an"}},
+	{o={"^and"}, r={"^an"}},
+	{o={"can't"}, r={"kinna"}},
+	{o={"not"}, r={"nae"}},
+	
 	}
 
 	speakDB = {}	
