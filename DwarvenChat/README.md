@@ -14,9 +14,10 @@ becomes <br/>
 ``` What're ye sayin'? I cannae hear ye! ``` <br/>
 This happens as soon as you press enter. It is very fast, and fluid.
 ## How to use
-Download and drop the folder into your interface/addons folder.
-Start the game and click addons in the bottom left of your screen.
-Enable Dwarven Chat
+- Download and drop the folder into your interface/addons folder.
+- tart the game and click addons in the bottom left of your screen.
+- Enable Dwarven Chat
+- Log in and start talkin'!
 
 /dchat [on/off] 
 toggles it on and off.  Remembered per character.
