@@ -1,5 +1,5 @@
 ## Dwarven Chat v1.0.5
-# Designed, Maintained and updated by gruzzly
+# Designed, Maintained and updated by Gruzzly
 Source snippits by Blaquen
 
 # 1.0.5 7/03/2020
@@ -12,7 +12,7 @@ This addon auto translates your input text and outputs modified text that resemb
 ``` What are you saying? I can't hear you! ```
 becomes
 ``` What're ye sayin'? I cannae hear ye! ```
-
+This happens as soon as you press enter. It is very fast, and fluid.
 ## How to use
 Download and drop the folder into your interface/addons folder.
 Start the game and click addons in the bottom left of your screen.
