@@ -1,12 +1,11 @@
--- PirateSpeak by Blaquen - Black DragonFlight - lkraven@gmail.com
--- Currently maintained and updated by Imyself <Savvy> - Echo Isles (www.savvyguild.com)
+-- Currently maintained, designed and updated by Gruzzly
 
 -- Create our LibDataBroker Object
 local ldb = LibStub:GetLibrary("LibDataBroker-1.1");
-local psBroker = ldb:NewDataObject("PirateSpeak", { 
+local psBroker = ldb:NewDataObject("DwarvenChat", { 
 	type = "data source",
-	label = "Pirate Speak", 
-	icon = "Interface\\AddOns\\PirateSpeak\\icon",
+	label = "DwarvenChat", 
+	icon = "Interface\\AddOns\\DwarvenChat\\icon",
 	text = "--"
 	}
 	)
@@ -14,17 +13,17 @@ local psBroker = ldb:NewDataObject("PirateSpeak", {
 
 -- Event Handler
 local function OnEvent(self, event, addOnName)
-	if event == "ADDON_LOADED" and addOnName:lower() == "piratespeak" then
+	if event == "ADDON_LOADED" and addOnName:lower() == "DwarvenChat" then
 
 		-- Build our slash commands
-		PirateSpeak_OnLoad()
+		DwarvenChat_OnLoad()
 
 		-- set saved variables for first time users		
-		if pirate_talk_on == nil then
-   			pirate_talk_on = 1;
+		if Dwarven_talk_on == nil then
+   			Dwarven_talk_on = 1;
   		end
-  		if pirate_strict_on == nil then
-   			pirate_strict_on = 0; 
+  		if Dwarven_strict_on == nil then
+   			Dwarven_strict_on = 0; 
   		end
 
 		--  Get our speak tables
@@ -34,7 +33,7 @@ local function OnEvent(self, event, addOnName)
 			
 
 		-- set the status text of our LDB object
-		if (pirate_talk_on == 1) then
+		if (Dwarven_talk_on == 1) then
 			psBroker.text = "|c0000FF00ON |r"
 		else
 			psBroker.text = "|c00FF0000OFF|r"
@@ -47,32 +46,32 @@ local function OnEvent(self, event, addOnName)
 end
 
 -- Create our frame
-local psFrame = CreateFrame("FRAME", "PirateSpeak");
+local psFrame = CreateFrame("FRAME", "DwarvenChat");
 psFrame:RegisterEvent("ADDON_LOADED");
 psFrame:RegisterEvent("PLAYER_LOGOUT"); 
 psFrame:SetScript("OnEvent", OnEvent);
 
 
-function PirateSpeak_OnLoad()
+function DwarvenChat_OnLoad()
 
 	-- Create our slash commands
-	SlashCmdList["PIRATESPEAKTOGGLE"] = pirate_toggle;
-	SLASH_PIRATESPEAKTOGGLE1 = "/dwarfspeak";
-	SLASH_PIRATESPEAKTOGGLE2 = "/dpeak";
-	SlashCmdList["PSAY"] = pirate_say;
+	SlashCmdList["DwarvenChatTOGGLE"] = Dwarven_toggle;
+	SLASH_DwarvenChatTOGGLE1 = "/dwarfspeak";
+	SLASH_DwarvenChatTOGGLE2 = "/dpeak";
+	SlashCmdList["PSAY"] = Dwarven_say;
 	SLASH_PSAY1 = "/ds";
 	SLASH_PSAY2 = "/dsay";
-	SlashCmdList["DYELL"] = pirate_yell;
+	SlashCmdList["DYELL"] = Dwarven_yell;
 	SLASH_PYELL1 = "/dy";
 	SLASH_PYELL2 = "/dyell";
-	SlashCmdList["DPARTY"] = pirate_party;
+	SlashCmdList["DPARTY"] = Dwarven_party;
 	SLASH_PPARTY1 = "/dp";
 	SLASH_PPARTY2 = "/dparty";
-	SlashCmdList["DGUILD"] = pirate_guild;
+	SlashCmdList["DGUILD"] = Dwarven_guild;
 	SLASH_PGUILD1 = "/dg";
 	SLASH_PGUILD2 = "/dguild";
-	SlashCmdList["DSTRICTTOGGLE"] = pirate_strict;
-	SLASH_PSTRICTTOGGLE1 = "/dstrict";
+	SlashCmdList["DSTRICTTOGGLE"] = Dwarven_strict;
+	SLASH_DSTRICTTOGGLE1 = "/dstrict";
 
 	-- announce addon load
 	if( DEFAULT_CHAT_FRAME ) then
@@ -82,7 +81,7 @@ end
 
 
 -- Blizzard function to be hooked
-local PirateSpeak_SendChatMessage = SendChatMessage;
+local DwarvenChat_SendChatMessage = SendChatMessage;
 
 -- Wintertime and Dwarf Accent conflict.
 -- If we detect Wintertime we'll note the channel and stay off of it
@@ -90,37 +89,37 @@ local wtID, wtName = GetChannelName("WinterTimeGlobal")
 
 function SendChatMessage(msg, system, language, chatnumber) 
 	--DEFAULT_CHAT_FRAME:AddMessage("Channel ID: "..chatnumber.." message: "..msg.." ChannelName: "..wtID .. ", " .. wtName);
-    if (pirate_talk_on == 1 and msg ~= "" and (string.find(msg, "%[") == nil)) then 
+    if (Dwarven_talk_on == 1 and msg ~= "" and (string.find(msg, "%[") == nil)) then 
 	if ( string.find(msg, "^%/") == nil ) and (chatnumber ~= wtID) then
-          msg = piratespeak(msg);
+          msg = DwarvenChat(msg);
 	end
     end
-    PirateSpeak_SendChatMessage(msg, system, language, chatnumber);
+    DwarvenChat_SendChatMessage(msg, system, language, chatnumber);
 end 
 
 
-function prepend_pirate(inputString)
-	local phrase_array = speakDB["pirateSpeak_PrependDB"]
-	if (pirate_strict_on == 0) then
+function prepend_Dwarven(inputString)
+	local phrase_array = speakDB["DwarvenChat_PrependDB"]
+	if (Dwarven_strict_on == 0) then
 		inputString = phrase_array[math.random(table.getn(phrase_array))]..inputString
 	end
 	return inputString
 end
 
-function append_pirate(inputString)
- 	local phrase_array = speakDB["pirateSpeak_AppendDB"]
-	if (pirate_strict_on == 0) then
+function append_Dwarven(inputString)
+ 	local phrase_array = speakDB["DwarvenChat_AppendDB"]
+	if (Dwarven_strict_on == 0) then
 		inputString = string.gsub(inputString, '([%.%!%?])', phrase_array[math.random(table.getn(phrase_array))].."%1",1)
 	end 
 	return inputString
 end
 
-function sub_pirate(inputString)
+function sub_Dwarven(inputString)
 
 	local cur_sub = {}
-	local sub_array = speakDB["pirateSpeak_ReplaceDB"]
+	local sub_array = speakDB["DwarvenChat_ReplaceDB"]
 	
-	inputString = string.gsub(inputString, "(%s)", inject_pirate)
+	inputString = string.gsub(inputString, "(%s)", inject_Dwarven)
 
 	for i = 1, table.getn( sub_array ) do
 		cur_sub['o']=sub_array[i]['o']
@@ -139,65 +138,65 @@ function sub_pirate(inputString)
 	return inputString
 end
 
-function inject_pirate(inputString)
-	if ( math.random(100) > 98 and pirate_strict_on == 0) then
+function inject_Dwarven(inputString)
+	if ( math.random(100) > 98 and Dwarven_strict_on == 0) then
 		inputString = ", yarrr, "
 	end
 	return inputString
 end
 
--- function piratespeak(x)
--- 	x = sub_pirate(x)
+-- function DwarvenChat(x)
+-- 	x = sub_Dwarven(x)
 -- 	if (math.random(100) > 75 ) then
--- 		x = append_pirate(x)
+-- 		x = append_Dwarven(x)
 -- 	else
--- 		if(math.random(100) > 50 and pirate_strict_on == 0) then
+-- 		if(math.random(100) > 50 and Dwarven_strict_on == 0) then
 -- 			x = x .. " Bwaha!"
 -- 		end
 -- 	end
 -- 	if ( math.random(100) > 75 ) then
--- 		x = prepend_pirate(x)
+-- 		x = prepend_Dwarven(x)
 -- 	end
 -- 	return x;
 -- end
 
-function pirate_toggle(toggle)
+function Dwarven_toggle(toggle)
 	if ( toggle == "on" ) then
-		pirate_talk_on = 1
+		Dwarven_talk_on = 1
 		psBroker.text = "|c0000FF00ON|r"
 		DEFAULT_CHAT_FRAME:AddMessage("Dwarf Accent On")
 	elseif ( toggle == "off" ) then
-		pirate_talk_on = 0
+		Dwarven_talk_on = 0
 		psBroker.text = "|c00FF0000OFF|r"
 		DEFAULT_CHAT_FRAME:AddMessage("Dwarf Accent off")
 	else	
-		DEFAULT_CHAT_FRAME:AddMessage(pirate_helptext(helptext))
+		DEFAULT_CHAT_FRAME:AddMessage(Dwarven_helptext(helptext))
 	end
 end
 
-function pirate_strict(toggle)
+function Dwarven_strict(toggle)
 	if ( toggle == "on" ) then
-		pirate_strict_on = 1
-		DEFAULT_CHAT_FRAME:AddMessage("Pirate Speak append, prepend and inject phrases are off")
+		Dwarven_strict_on = 1
+		DEFAULT_CHAT_FRAME:AddMessage("DwarvenChat append, prepend and inject phrases are off")
 	elseif ( toggle == "off" ) then
-		pirate_strict_on = 0
-		DEFAULT_CHAT_FRAME:AddMessage("Pirate Speak append, prepend and inject phrases are on")
+		Dwarven_strict_on = 0
+		DEFAULT_CHAT_FRAME:AddMessage("DwarvenChat append, prepend and inject phrases are on")
 	else
 		helptext = ""
-		DEFAULT_CHAT_FRAME:AddMessage(pirate_helptext(helptext))
+		DEFAULT_CHAT_FRAME:AddMessage(Dwarven_helptext(helptext))
 	end
 end
 
-function pirate_helptext(helptext)
-	helptext = "/pspeak (" 
-	if (pirate_talk_on == 1) then
+function Dwarven_helptext(helptext)
+	helptext = "/dchat (" 
+	if (Dwarven_talk_on == 1) then
 		helptext = helptext .. "|c0000FF00on|r|off)"
 	else
 		helptext = helptext .. "on| |c00FF0000off|r)"
 	end
-	helptext = helptext .. ": toggle global pirate talk\n/ps,/psay: say something in pirate\n/py,/pyell: yell something in pirate\n/pp,/pparty: party talk something in pirate\n/pg, /pguild: guildtalk in pirate\n/"
-	helptext = helptext .. "pstrict ("
-	if (pirate_strict_on == 1) then
+	helptext = helptext .. ": toggle global Dwarven talk\n/ds,/dsay: say something in Dwarven\n/dy,/dyell: yell something in Dwarven\n/dp,/dparty: party talk something in Dwarven\n/dg, /dguild: guildtalk in Dwarven\n/"
+	helptext = helptext .. "dstrict ("
+	if (Dwarven_strict_on == 1) then
 		helptext = helptext .. "|c0000FF00on|r|off)"
 	else
 		helptext = helptext .. "on| |c00FF0000off|r)"
@@ -207,23 +206,23 @@ function pirate_helptext(helptext)
 end
 
 
-function pirate_say(x)
-	x = piratespeak(x)
+function Dwarven_say(x)
+	x = DwarvenChat(x)
 	SendChatMessage(x);
 end
 
-function pirate_yell(x)
-	x = piratespeak(x)
+function Dwarven_yell(x)
+	x = DwarvenChat(x)
 	SendChatMessage(x,"YELL");
 end
 
-function pirate_party(x)
-	x = piratespeak(x)
+function Dwarven_party(x)
+	x = DwarvenChat(x)
 	SendChatMessage(x,"PARTY");
 end
 
-function pirate_guild(x)
-	x = piratespeak(x)
+function Dwarven_guild(x)
+	x = DwarvenChat(x)
 	SendChatMessage(x,"GUILD");
 end
 
@@ -231,10 +230,10 @@ end
 
 -- Create the LDB tooltip
 function psBroker:OnTooltipShow()
-	statusLine = "Pirate Speak is "
-	if (pirate_talk_on == 1) then
+	statusLine = "DwarvenChat is "
+	if (Dwarven_talk_on == 1) then
 		statusLine = statusLine .. "|c0000FF00ON|r"
-		if (pirate_strict_on == 1) then
+		if (Dwarven_strict_on == 1) then
 			statusLine = statusLine .. " (strict mode)"			
 		else
 			statusLine = statusLine .. " (verbose mode)"
@@ -243,10 +242,10 @@ function psBroker:OnTooltipShow()
 		statusLine = statusLine .. "|c00FF0000OFF|r"
 	end 
 	self:AddLine(statusLine);
-	self:AddLine("Left Click toggles Pirate Speak on and off", 1, 1, 1);
+	self:AddLine("Left Click toggles DwarvenChat on and off", 1, 1, 1);
     	self:AddLine("Right Click toggles betrween strict and verbose", 1, 1, 1);
     	self:AddLine(" ", 1, 1, 1);
-    	self:AddLine("type: /pspeak for command line options", 1, 1, 1);
+    	self:AddLine("type: /dchat for command line options", 1, 1, 1);
    
 end
 
@@ -254,18 +253,18 @@ end
 -- Toggles functions based on LDB button clicks
 function psBroker:OnClick(button)
 	if button== "LeftButton" then
-		if (pirate_talk_on == 1) then
-			pirate_toggle("off")
+		if (Dwarven_talk_on == 1) then
+			Dwarven_toggle("off")
 			psBroker.text = "|c00FF0000OFF|r"
 		else
-			pirate_toggle("on")
+			Dwarven_toggle("on")
 			psBroker.text = "|c0000FF00ON |r"
 		end
 	elseif button== "RightButton" then
-		if (pirate_strict_on == 1) then
-			pirate_strict("off")
+		if (Dwarven_strict_on == 1) then
+			Dwarven_strict("off")
 		else
-			pirate_strict("on")
+			Dwarven_strict("on")
 		end
 	end
 end
@@ -273,29 +272,14 @@ end
 -- Create default speak tables
 
 function CreateSpeakDB()
-	-- local pirateSpeak_PrependDB = {
+	-- local DwarvenChat_PrependDB = {
 	-- "Aye, ",
 	-- }
-	-- local pirateSpeak_AppendDB = {
-	-- ", ye scurvy dog",
-	-- ", matey",
-	-- ", or I not be a pirate.  Arrr",
-	-- ", by the briny deep",
-	-- ", arrrr",
-	-- ", landlubber",
-	-- ", arrr",
-	-- ", arr",
-	-- ", yarrr",
-	-- ", yarr",
-	-- ", thar she blows",
-	-- ", scurvy scum",
-	-- ", swabby",
-	-- ", ye old dog",
-	-- ", ye dog",
-	-- ", salty dog"
+	-- local DwarvenChat_AppendDB = {
+	-- ", Bwaha!",
 	-- }
-	local pirateSpeak_ReplaceDB = {
-	{o={"^hello","^hiya","^hi there", "^hey"}, r={"Well met","E'llo","ahoy thar"}},
+	local DwarvenChat_ReplaceDB = {
+	{o={"^hello","^hiya","^hi there", "^hey"}, r={"Well met","E'llo"}},
 	{o={"no", "nah"}, r={"nae"}},
 	{o={"^no", "^nah"}, r={"^nae"}},
 	{o={"the"}, r={"tha"}},
@@ -318,9 +302,9 @@ function CreateSpeakDB()
 
 	speakDB = {}	
 
-	speakDB["pirateSpeak_PrependDB"] = pirateSpeak_PrependDB
-	speakDB["pirateSpeak_AppendDB"] = pirateSpeak_AppendDB
-	speakDB["pirateSpeak_ReplaceDB"] = pirateSpeak_ReplaceDB
+	speakDB["DwarvenChat_PrependDB"] = DwarvenChat_PrependDB
+	speakDB["DwarvenChat_AppendDB"] = DwarvenChat_AppendDB
+	speakDB["DwarvenChat_ReplaceDB"] = DwarvenChat_ReplaceDB
 
 
 	DEFAULT_CHAT_FRAME:AddMessage("speakDB initialized");
