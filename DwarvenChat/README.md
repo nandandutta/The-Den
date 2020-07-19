@@ -1,14 +1,14 @@
 ## Dwarven Chat v1.0.5
-# maintained and updated by gruzzly
+# Designed, Maintained and updated by gruzzly
 source snippits by Blaquen
 
-1.0.5 7/03/2020
+# 1.0.5 7/03/2020
 Updated modules for new patch
 Minor fixes for compatability.
 
 
 
-#How to use
+## How to use
 Download and drop the folder into your interface/addons folder.
 Start the game and click addons in the bottom left of your screen.
 Enable Dwarven Chat
