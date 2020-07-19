@@ -9,9 +9,9 @@ Minor fixes for compatability.
 # What is it?
 This addon auto translates your input text and outputs modified text that resembles a dwarven accent.
 ## For example:
-> What are you saying? I can't hear you!
+``` What are you saying? I can't hear you! ```
 becomes
-> What're ye sayin'? I cannae hear ye!
+``` What're ye sayin'? I cannae hear ye! ```
 
 ## How to use
 Download and drop the folder into your interface/addons folder.
