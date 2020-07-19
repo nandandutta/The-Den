@@ -12,6 +12,8 @@ These are useful scripts to sync to and from dropbox using pythonista on IOS.
 This will automatically post to twitter using their API.
 - [Facebook post bot](https://github.com/Gruzzly-bear/The-Den/tree/master/Facebook%20Bot)
 This will automatically post text or images to your facebook wall.
+- [Twitter Image Bot](https://github.com/Gruzzly-bear/The-Den/tree/master/Twitter%20Image%20Bot)
+This was created before I added both images and texts into the final Twitter bot. This bot only pulls images and posts them. Great for Advertisements.
 
 
 
