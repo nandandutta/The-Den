@@ -25,7 +25,7 @@ It pulls credentials and settings from a config.
 Copy that and paste it into the settings.cfg 
 - To open a .cfg you right click it and open it with notepad.
 ##### Example
-https://graph.facebook.com/oauth/access_token?client_id=<your FB App ID >&client_secret=<your FB App secret>&grant_type=fb_exchange_token&fb_exchange_token=<your short-lived access token>
+``` https://graph.facebook.com/oauth/access_token?client_id=<your FB App ID >&client_secret=<your FB App secret>&grant_type=fb_exchange_token&fb_exchange_token=<your short-lived access token> ```
 
 
 
