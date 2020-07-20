@@ -15,6 +15,10 @@ This will automatically post text or images to your facebook wall.
 This was created before I added both images and texts into the final Twitter bot. This bot only pulls images and posts them. Great for Advertisements.
 - [Websites](https://github.com/Gruzzly-bear/The-Den/tree/master/Websites)
 A small repo of websites I have worked on and are still working on.
+- [Python](https://github.com/Gruzzly-bear/The-Den/tree/master/python)
+This is a repo consisting of random and uncategorized python scripts.
+
+
 
 
 
