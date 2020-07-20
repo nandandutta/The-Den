@@ -147,14 +147,14 @@ end
 
 function dwarvenchat(x)
 	x = sub_dwarven(x)
-	if (math.random(100) > 75 ) then
+	if (math.random(100) > 98 ) then
 		x = append_dwarven(x)
 	else
-		if(math.random(100) > 50 and dwarven_strict_on == 0) then
+		if(math.random(100) > 98 and dwarven_strict_on == 0) then
 			x = x .. " Bwaha!"
 		end
 	end
-	if ( math.random(100) > 75 ) then
+	if ( math.random(100) > 98 ) then
 		x = prepend_dwarven(x)
 	end
 	return x;
