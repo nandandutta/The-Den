@@ -17,3 +17,7 @@ This was created before I added both images and texts into the final Twitter bot
 
 
 
+### Contact and links
+- [Github](https://github.com/Gruzzly-bear)
+- [Email](mailto:MB.Bowen@outlook.com?subject=Hey%20There!)
+- [Website](https://gruzzly.co)
