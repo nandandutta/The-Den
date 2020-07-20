@@ -1,6 +1,6 @@
-## Interface: 40000
-## Title: Dwarven Chat |c0000FF00 V1.0.5 (English)|r
-## Version: v2.2.1
+## Interface: 80300
+## Title: Dwarven Chat | V1.0.5 
+## Version: v1.0.5
 ## Notes: Adds a dwarven accent. Type: /dchat for options
 ## Author: gruzzly
 ## OptionalDeps:

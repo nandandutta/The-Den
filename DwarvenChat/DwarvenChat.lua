@@ -56,8 +56,8 @@ function DwarvenChat_OnLoad()
 
 	-- Create our slash commands
 	SlashCmdList["DwarvenChatTOGGLE"] = Dwarven_toggle;
-	SLASH_DwarvenChatTOGGLE1 = "/dwarfspeak";
-	SLASH_DwarvenChatTOGGLE2 = "/dpeak";
+	SLASH_DwarvenChatTOGGLE1 = "/dwarvenchat";
+	SLASH_DwarvenChatTOGGLE2 = "/dchat";
 	SlashCmdList["DSAY"] = Dwarven_say;
 	SLASH_DSAY1 = "/ds";
 	SLASH_DSAY2 = "/dsay";
@@ -145,20 +145,20 @@ function inject_Dwarven(inputString)
 	return inputString
 end
 
--- function DwarvenChat(x)
--- 	x = sub_Dwarven(x)
--- 	if (math.random(100) > 75 ) then
--- 		x = append_Dwarven(x)
--- 	else
--- 		if(math.random(100) > 50 and Dwarven_strict_on == 0) then
--- 			x = x .. " Bwaha!"
--- 		end
--- 	end
--- 	if ( math.random(100) > 75 ) then
--- 		x = prepend_Dwarven(x)
--- 	end
--- 	return x;
--- end
+function DwarvenChat(x)
+	x = sub_Dwarven(x)
+	if (math.random(100) > 75 ) then
+		x = append_Dwarven(x)
+	else
+		if(math.random(100) > 50 and Dwarven_strict_on == 0) then
+			x = x .. " Bwaha!"
+		end
+	end
+	if ( math.random(100) > 75 ) then
+		x = prepend_Dwarven(x)
+	end
+	return x;
+end
 
 function Dwarven_toggle(toggle)
 	if ( toggle == "on" ) then
@@ -272,12 +272,12 @@ end
 -- Create default speak tables
 
 function CreateSpeakDB()
-	-- local DwarvenChat_PrependDB = {
-	-- "Aye, ",
-	-- }
-	-- local DwarvenChat_AppendDB = {
-	-- ", Bwaha!",
-	-- }
+	local DwarvenChat_PrependDB = {
+	"Aye, ",
+	}
+	local DwarvenChat_AppendDB = {
+	", Bwaha!",
+	}
 	local DwarvenChat_ReplaceDB = {
 	{o={"^hello","^hiya","^hi there", "^hey"}, r={"Well met","E'llo"}},
 	{o={"no", "nah"}, r={"nae"}},
@@ -299,7 +299,7 @@ function CreateSpeakDB()
 	{o={"to"}, r={"tae"}},
 	{o={"of"}, r={"o'"}},
 	{o={"just"}, r={"jus'"}},
-	{o={"not"}, r={"nae"}}
+	{o={"not"}, r={"nae"}},
 	
 	}
 
