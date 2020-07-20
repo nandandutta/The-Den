@@ -2,7 +2,7 @@
 
 -- Create our LibDataBroker Object
 local ldb = LibStub:GetLibrary("LibDataBroker-1.1");
-local psBroker = ldb:NewDataObject("DwarvenChat", { 
+local dcBroker = ldb:NewDataObject("DwarvenChat", { 
 	type = "data source",
 	label = "DwarvenChat", 
 	icon = "Interface\\AddOns\\DwarvenChat\\icon",
@@ -34,9 +34,9 @@ local function OnEvent(self, event, addOnName)
 
 		-- set the status text of our LDB object
 		if (Dwarven_talk_on == 1) then
-			psBroker.text = "|c0000FF00ON |r"
+			dcBroker.text = "|c0000FF00ON |r"
 		else
-			psBroker.text = "|c00FF0000OFF|r"
+			dcBroker.text = "|c00FF0000OFF|r"
 		end		
  	elseif event == "PLAYER_LOGOUT" then
 		
@@ -46,10 +46,10 @@ local function OnEvent(self, event, addOnName)
 end
 
 -- Create our frame
-local psFrame = CreateFrame("FRAME", "DwarvenChat");
-psFrame:RegisterEvent("ADDON_LOADED");
-psFrame:RegisterEvent("PLAYER_LOGOUT"); 
-psFrame:SetScript("OnEvent", OnEvent);
+local dcFrame = CreateFrame("FRAME", "DwarvenChat");
+dcFrame:RegisterEvent("ADDON_LOADED");
+dcFrame:RegisterEvent("PLAYER_LOGOUT"); 
+dcFrame:SetScript("OnEvent", OnEvent);
 
 
 function DwarvenChat_OnLoad()
@@ -58,9 +58,9 @@ function DwarvenChat_OnLoad()
 	SlashCmdList["DwarvenChatTOGGLE"] = Dwarven_toggle;
 	SLASH_DwarvenChatTOGGLE1 = "/dwarfspeak";
 	SLASH_DwarvenChatTOGGLE2 = "/dpeak";
-	SlashCmdList["PSAY"] = Dwarven_say;
-	SLASH_PSAY1 = "/ds";
-	SLASH_PSAY2 = "/dsay";
+	SlashCmdList["DSAY"] = Dwarven_say;
+	SLASH_DSAY1 = "/ds";
+	SLASH_DSAY2 = "/dsay";
 	SlashCmdList["DYELL"] = Dwarven_yell;
 	SLASH_PYELL1 = "/dy";
 	SLASH_PYELL2 = "/dyell";
@@ -140,7 +140,7 @@ end
 
 function inject_Dwarven(inputString)
 	if ( math.random(100) > 98 and Dwarven_strict_on == 0) then
-		inputString = ", yarrr, "
+		inputString = ", Ach, "
 	end
 	return inputString
 end
@@ -163,11 +163,11 @@ end
 function Dwarven_toggle(toggle)
 	if ( toggle == "on" ) then
 		Dwarven_talk_on = 1
-		psBroker.text = "|c0000FF00ON|r"
+		dcBroker.text = "|c0000FF00ON|r"
 		DEFAULT_CHAT_FRAME:AddMessage("Dwarf Accent On")
 	elseif ( toggle == "off" ) then
 		Dwarven_talk_on = 0
-		psBroker.text = "|c00FF0000OFF|r"
+		dcBroker.text = "|c00FF0000OFF|r"
 		DEFAULT_CHAT_FRAME:AddMessage("Dwarf Accent off")
 	else	
 		DEFAULT_CHAT_FRAME:AddMessage(Dwarven_helptext(helptext))
@@ -229,7 +229,7 @@ end
 -- LibDataBroker Functions
 
 -- Create the LDB tooltip
-function psBroker:OnTooltipShow()
+function dcBroker:OnTooltipShow()
 	statusLine = "DwarvenChat is "
 	if (Dwarven_talk_on == 1) then
 		statusLine = statusLine .. "|c0000FF00ON|r"
@@ -251,14 +251,14 @@ end
 
 
 -- Toggles functions based on LDB button clicks
-function psBroker:OnClick(button)
+function dcBroker:OnClick(button)
 	if button== "LeftButton" then
 		if (Dwarven_talk_on == 1) then
 			Dwarven_toggle("off")
-			psBroker.text = "|c00FF0000OFF|r"
+			dcBroker.text = "|c00FF0000OFF|r"
 		else
 			Dwarven_toggle("on")
-			psBroker.text = "|c0000FF00ON |r"
+			dcBroker.text = "|c0000FF00ON |r"
 		end
 	elseif button== "RightButton" then
 		if (Dwarven_strict_on == 1) then
@@ -285,7 +285,7 @@ function CreateSpeakDB()
 	{o={"the"}, r={"tha"}},
 	{o={"^the"}, r={"^tha"}},
 	{o={"you"}, r={"ye"}},
-	{o={"don't", "Don't"}, r={"dinna"}},
+	{o={"don't", "Don't"}, r={"dunnae"}},
 	{o={"my"}, r={"me"}},
 	{o={"^my"}, r={"^me"}},
 	{o={"are"}, r={"be"}},
@@ -295,8 +295,11 @@ function CreateSpeakDB()
 	{o={"^the"}, r={"^tha"}},
 	{o={"and"}, r={"^an"}},
 	{o={"^and"}, r={"^an"}},
-	{o={"can't"}, r={"kinna"}},
-	{o={"not"}, r={"nae"}},
+	{o={"can't"}, r={"cannae"}},
+	{o={"to"}, r={"tae"}},
+	{o={"of"}, r={"o'"}},
+	{o={"just"}, r={"jus'"}},
+	{o={"not"}, r={"nae"}}
 	
 	}
 
