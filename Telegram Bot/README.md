@@ -1,4 +1,8 @@
-# How-to
+# Development of this has stopped until further notice.
+
+
+
+### How-to
 - Install requirements using </br>
 ``` pip install -r requirements.txt ``` </br>
 - Fill out settings.py.
