@@ -6,19 +6,19 @@ This repo is full of projects I have taken on personally or as a request for peo
 
 # Projects and their descriptions.
 
-## Dwarven Chat v1.0.5
+### Dwarven Chat v1.0.5
 
-# What is it?
+### What is it?
 This addon auto translates your input text and outputs modified text that resembles a dwarven accent.
-## For example:
+#### For example:
 ``` What are you saying? I can't hear you! ``` <br/>
 becomes <br/>
 ``` What're ye sayin'? I cannae hear ye! ``` <br/>
 This happens as soon as you press enter. It is very fast, and fluid.
 
-# How does it work?
+### How does it work?
 It creates the in game slash function on load. It creates local databases to pull and replace predefined text from.
-### Creating the slash command for ingame use.
+#### Creating the slash command for ingame use.
 ```lua
 function DwarvenChat_OnLoad()
 
@@ -29,7 +29,7 @@ function DwarvenChat_OnLoad()
 	SlashCmdList["DSAY"] = dwarven_say;
  ```
 
-### Local Dwarven chat database creation for replacing words.
+#### Local Dwarven chat database creation for replacing words.
 ```lua
 	local dwarvenChat_ReplaceDB = {
 	{o={"^hello","^hiya","^hi there", "^hey"}, r={"Well met","E'llo"}},
@@ -38,7 +38,7 @@ function DwarvenChat_OnLoad()
 	{o={"the"}, r={"tha"}},
 	}
 ```
-### Hooking of blizzard function
+#### Hooking of blizzard function
 ```lua
 local dwarvenChat_SendChatMessage = SendChatMessage;
 ```
