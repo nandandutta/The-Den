@@ -13,6 +13,34 @@ This addon auto translates your input text and outputs modified text that resemb
 becomes <br/>
 ``` What're ye sayin'? I cannae hear ye! ``` <br/>
 This happens as soon as you press enter. It is very fast, and fluid.
+
+# How does it work?
+It creates the in game slash function on load. It creates local databases to pull and replace predefined text from.
+### Creating the slash command for ingame use.
+```lua
+function DwarvenChat_OnLoad()
+
+	-- Create our slash commands
+	SlashCmdList["DWARVENCHATTOGGLE"] = dwarven_toggle;
+	SLASH_DWARVENCHATTOGGLE1 = "/dwarvenchat";
+	SLASH_DWARVENCHATTOGGLE2 = "/dchat";
+	SlashCmdList["DSAY"] = dwarven_say;
+ ```
+
+### Local Dwarven chat database creation for replacing words.
+```lua
+	local dwarvenChat_ReplaceDB = {
+	{o={"^hello","^hiya","^hi there", "^hey"}, r={"Well met","E'llo"}},
+	{o={"no", "nah"}, r={"nae"}},
+	{o={"^no", "^nah"}, r={"^nae"}},
+	{o={"the"}, r={"tha"}},
+	}
+```
+### Hooking of blizzard function
+```lua
+local dwarvenChat_SendChatMessage = SendChatMessage;
+```
+
 ## How to use
 - Download and drop the folder into your interface/addons folder.
 - tart the game and click addons in the bottom left of your screen.
