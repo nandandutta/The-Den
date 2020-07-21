@@ -20,7 +20,7 @@ It creates the in game slash function on load. It creates local databases to pul
 ```lua
 function DwarvenChat_OnLoad()
 
-	-- Create our slash commands
+	
 	SlashCmdList["DWARVENCHATTOGGLE"] = dwarven_toggle;
 	SLASH_DWARVENCHATTOGGLE1 = "/dwarvenchat";
 	SLASH_DWARVENCHATTOGGLE2 = "/dchat";
