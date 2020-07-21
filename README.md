@@ -57,7 +57,8 @@ for file in folder_metadata['contents']:
 		
 		file_ext = os.path.splitext(file_name)[1]
 		
-		if file['is_dir'] == False and (file_ext in config['file_extensions'] or [m.group(0) for l in config['file_extensions'] for m in [re.match('[\.]?\*',l)] if m]):
+		if file['is_dir'] == False and (file_ext in config['file_extensions'] or [m.group(0) for l in config['file_extensions'] 
+		for m in [re.match('[\.]?\*',l)] if m]):
 
 			if not os.path.exists(os.path.join(PYTHONISTA_DOC_DIR, dropbox_path)):
  ```
@@ -74,18 +75,16 @@ def setup_configuration():
 		logging.log(FINE, 'Configuration file missing')
 		config = {}
 		
-		logging.info('Get your app key and secret from the Dropbox developer website')
+		logging.info('Inset your App key and secret.')
 		
 		config['APP_KEY'] = input('''Enter your app key
 ''')
 		config['APP_SECRET'] = input('''Enter your app secret
 ''')
 		
-		# ACCESS_TYPE can be 'dropbox' or 'app_folder' as configured for your app
 		config['ACCESS_TYPE'] = 'app_folder'
 		
 		
-		# Write the config file back
 		write_configuration(config)
 			
 	return config
