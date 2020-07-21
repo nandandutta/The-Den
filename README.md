@@ -1,10 +1,7 @@
 # The Den
 
 This repo is full of projects I have taken on personally or as a request for people.
-
-
-
-# Projects and their descriptions.
+Below is a quick summary of the projects and snippits of their features.
 
 
 
