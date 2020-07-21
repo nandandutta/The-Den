@@ -9,14 +9,17 @@ This small script will automatically post a line of text or an image from a fold
 It pulls credentials and settings from a config.
 
 # How was it made?
-I used the python Tweepy module for most of it. I also used Config Parser. Config parser is great, because you can load information into the script itself after it's been compiled into an executable.
+I used the python Tweepy module for most of it. I also used Config Parser. Config parser is great, because you can load information into the script itself after it's been compiled into an executable. I also used sleep so that it would repeat the entire process of posting after a short delay.
 
 ### ConfigParser Example
 ```python
 consumer_key=config.get('settings','consumer_key')
 consumer_secret=config.get('settings','consumer_secret')
 ```
-
+### Sleep Example
+```python
+sleep_time = int(config.get("settings", "sleep")) # sleep for 1 second by default
+```
 ## How to use
 
 - The first thing you will need is a twitter account.
