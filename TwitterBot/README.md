@@ -8,6 +8,15 @@ Improved code readability
 This small script will automatically post a line of text or an image from a folder directly onto your twitter account.<br/>
 It pulls credentials and settings from a config.
 
+# How was it made?
+I used the python Tweepy module for most of it. I also used Config Parser. Config parser is great, because you can load information into the script itself after it's been compiled into an executable.
+
+### ConfigParser Example
+```python
+consumer_key=config.get('settings','consumer_key')
+consumer_secret=config.get('settings','consumer_secret')
+```
+
 ## How to use
 
 - The first thing you will need is a twitter account.
