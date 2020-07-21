@@ -6,7 +6,9 @@ This repo is full of projects I have taken on personally or as a request for peo
 
 # Projects and their descriptions.
 
-### Dwarven Chat v1.0.5
+
+
+# Dwarven Chat v1.0.5
 
 ### What is it?
 This addon auto translates your input text and outputs modified text that resembles a dwarven accent.
@@ -43,7 +45,7 @@ function DwarvenChat_OnLoad()
 local dwarvenChat_SendChatMessage = SendChatMessage;
 ```
 
-### IOS Pythonista dropbox sync scripts.
+# IOS Pythonista dropbox sync scripts.
 
 ### What is it?
 It is a set of scripts used to sync to and from Pythonista on IOS.
