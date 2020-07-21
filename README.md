@@ -5,7 +5,7 @@ Below is a quick summary of the projects and snippits of their features.
 
 
 
-# Dwarven Chat v1.0.5
+# Dwarven Chat
 
 ### What is it?
 This addon auto translates your input text and outputs modified text that resembles a dwarven accent.
@@ -75,7 +75,7 @@ def setup_configuration():
 		logging.log(FINE, 'Configuration file missing')
 		config = {}
 		
-		logging.info('Inset your App key and secret.')
+		logging.info('Insert your App key and secret.')
 		
 		config['APP_KEY'] = input('''Enter your app key
 ''')
@@ -89,7 +89,46 @@ def setup_configuration():
 			
 	return config
   ```
+# Twitter Bot
 
+### What is it?
+This small script will automatically post a line of text or an image from a folder directly onto your twitter account.<br/>
+It pulls credentials and settings from a config.
+
+#### How was it made?
+I used the python Tweepy module for most of it. I also used Config Parser. Config parser is great, because you can load information into the script itself after it's been compiled into an executable. I also used sleep so that it would repeat the entire process of posting after a short delay.
+
+#### ConfigParser Example
+```python
+consumer_key=config.get('settings','consumer_key')
+consumer_secret=config.get('settings','consumer_secret')
+```
+#### Sleep Example
+```python
+sleep_time = int(config.get("settings", "sleep")) # sleep for 1 second by default
+```
+# Facebook Bot
+
+### What is it?
+This small script will automatically post a line of text or an image from a folder directly onto your facebook page/wall.<br/>
+It pulls credentials and settings from a config.
+
+#### How does it work?
+I used the python module facepy to integrate the facebook API and the script together. Then I used ConfigParser to pull information from a settings config into the script.
+Then I used random and graph to post the advertisement/text pulled randomly from the file TO facebook.
+
+#### ConfigParser Example
+```python
+config.read(os.path.join(os.path.dirname(__file__),"settings.cfg"))
+ACCESS_TOKEN=config.get('settings','ACCESS_TOKEN')
+```
+
+#### Graph Example
+```python
+while True:
+	graph = GraphAPI(ACCESS_TOKEN)
+	graph.post('me/feed', message=(random.choice(list(open('text.txt')))))
+ ```
 
 
 
