@@ -34,18 +34,16 @@ def setup_configuration():
 		logging.log(FINE, 'Configuration file missing')
 		config = {}
 		
-		logging.info('Get your app key and secret from the Dropbox developer website')
+		logging.info('Insert APP key and Secret')
 		
 		config['APP_KEY'] = input('''Enter your app key
 ''')
 		config['APP_SECRET'] = input('''Enter your app secret
 ''')
 		
-		# ACCESS_TYPE can be 'dropbox' or 'app_folder' as configured for your app
 		config['ACCESS_TYPE'] = 'app_folder'
 		
-		
-		# Write the config file back
+
 		write_configuration(config)
 			
 	return config
