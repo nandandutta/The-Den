@@ -8,6 +8,23 @@ Improved code readability
 This small script will automatically post a line of text or an image from a folder directly onto your facebook page/wall.<br/>
 It pulls credentials and settings from a config.
 
+# How does it work?
+I used the python module facepy to integrate the facebook API and the script together. Then I used ConfigParser to pull information from a settings config into the script.
+Then I used random and graph to post the advertisement/text pulled randomly from the file TO facebook.
+
+### ConfigParser Example
+```python
+config.read(os.path.join(os.path.dirname(__file__),"settings.cfg"))
+ACCESS_TOKEN=config.get('settings','ACCESS_TOKEN')
+```
+
+### Graph Example
+```python
+while True:
+	graph = GraphAPI(ACCESS_TOKEN)
+	graph.post('me/feed', message=(random.choice(list(open('text.txt')))))
+ ```
+
 ## How to use
 - Head over to https://developers.facebook.com/
 - Click on My apps at the top right. Make sure you are logged into the account you want to use.
