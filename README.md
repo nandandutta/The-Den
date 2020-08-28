@@ -5,6 +5,43 @@ Below is a quick summary of the projects and snippits of their features.
 
 
 
+
+
+
+
+# Flutter Portfolio App
+
+### What is it?
+An android application created for my portfolio.
+
+#### The hierarchy
+```dart
+          children: [
+            Image.asset(
+              'assets/images/Gruzzly.png',
+              width: 550,
+              height: 100,
+              fit: BoxFit.fitWidth,
+            ),
+            buttonSection,
+            space,
+            Image.asset(
+              'assets/images/me.png',
+              width: 250,
+              height: 250,
+            ),
+            textSection,
+            newtextSection,
+            newtextSections
+          ],
+ ```
+
+
+
+
+
+
+https://github.com/Gruzzly-bear/The-Den/tree/master/Flutter%20App
 # Dwarven Chat
 
 ### What is it?
