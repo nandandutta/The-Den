@@ -36,12 +36,6 @@ An android application created for my portfolio.
           ],
  ```
 
-
-
-
-
-
-https://github.com/Gruzzly-bear/The-Den/tree/master/Flutter%20App
 # Dwarven Chat
 
 ### What is it?
@@ -187,6 +181,9 @@ A small repo of websites I have worked on and are still working on.
 This is a repo consisting of random and uncategorized python scripts.
 - [Telegram Bot](https://github.com/Gruzzly-bear/The-Den/tree/master/Telegram%20Bot)
 This is an unfinished Telegram bot. It was to pull from a telegram chat and post to twitter.
+- [Flutter App](
+https://github.com/Gruzzly-bear/The-Den/tree/master/Flutter%20App)
+This is an application for android create with flutter for my portfolio.
 
 
 
