@@ -21,7 +21,7 @@ This is a repo consisting of random and uncategorized python scripts.
 This is an unfinished Telegram bot. It was to pull from a telegram chat and post to twitter.
 - [Flutter App](
 https://github.com/Gruzzly-bear/The-Den/tree/master/Flutter%20App)
-This is an application for android create with flutter for my portfolio.
+This is an application for android that I created with Dart and Flutter for my portfolio.
 
 
 ### Below is a quick summary of the projects and snippits of their features.
