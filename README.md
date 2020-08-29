@@ -24,7 +24,7 @@ https://github.com/Gruzzly-bear/The-Den/tree/master/Flutter%20App)
 This is an application for android create with flutter for my portfolio.
 
 
-# Below is a quick summary of the projects and snippits of their features.
+### Below is a quick summary of the projects and snippits of their features.
 
 
 # Flutter Portfolio App
