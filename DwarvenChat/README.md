@@ -1,6 +1,6 @@
 ## Dwarven Chat v1.0.5
 # Designed, Maintained and updated by Gruzzly
-Source snippits by Blaquen
+Snippits and contribution by Blaquen
 
 # 1.0.5 7/03/2020
 Updated modules for new patch
